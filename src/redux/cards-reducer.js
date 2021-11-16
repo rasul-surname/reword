@@ -1,3 +1,12 @@
+const CHANGE_STATE = 'CHANGE-STATE';
+const ADD_CARD = 'ADD-CARD';
+const FLIP_CARD = 'FLIP-CARD';
+const DELETE_CARD = 'DELETE-CARD';
+const ADD_STAR = 'ADD-STAR';
+const SHOW_STARS = 'SHOW-STARS';
+const SHOW_ALL = 'SHOW-ALL';
+const HIDE_STARS = 'HIDE-STARS';
+
 let initialState = {
     id: 0,
     word: '',
@@ -10,7 +19,7 @@ let initialState = {
 
 let cardsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'CHANGE-STATE':
+        case CHANGE_STATE:
             if (action.key == "word") {
                 return {
                     ...state,
@@ -22,7 +31,8 @@ let cardsReducer = (state = initialState, action) => {
                     translate: action.value,
                 }
             }
-        case 'ADD-CARD':
+        case ADD_CARD:
+            debugger;
             const newCard = {
                 id: 1 + state.id,
                 value: {
@@ -43,7 +53,7 @@ let cardsReducer = (state = initialState, action) => {
                 }),
                 cardsAll: [...state.cards, newCard],
             }
-        case 'FLIP-CARD':
+        case FLIP_CARD:
             const cards = [...state.cards];
             let index = cards.findIndex(card => {
                 return card.id === action.numberCard;
@@ -60,7 +70,7 @@ let cardsReducer = (state = initialState, action) => {
                     cards: cards,
                 }
             }
-        case 'DELETE-CARD':
+        case DELETE_CARD:
             const stateCards = [...state.cards];
             let indexCard = stateCards.findIndex(card => {
                 return card.id === action.numberCard;
@@ -75,7 +85,7 @@ let cardsReducer = (state = initialState, action) => {
                 }),
                 cardsAll: state.cards,
             }
-        case 'ADD-STAR':
+        case ADD_STAR:
             const cardsStar = [...state.cards];
             let indexStar = cardsStar.findIndex(card => {
                 return card.id === action.numberCard;
@@ -94,7 +104,7 @@ let cardsReducer = (state = initialState, action) => {
                     cards: cardsStar
                 }
             }
-        case 'SHOW-STARS':
+        case SHOW_STARS:
             return {
                 ...state,
                 cardsAll: state.cardsAll,
@@ -104,13 +114,13 @@ let cardsReducer = (state = initialState, action) => {
                     }
                 })
             }
-        case 'SHOW-ALL':
+        case SHOW_ALL:
             return {
                 ...state,
                 cardsAll: state.cardsAll,
                 cards: state.cardsAll,
             }
-        case 'HIDE-STARS':
+        case HIDE_STARS:
             return {
                 ...state,
                 cardsAll: state.cardsAll,
