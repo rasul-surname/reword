@@ -5,6 +5,7 @@ import CardsList from "./components/CardsList";
 import Button from "@mui/material/Button";
 import starYellow from './assets/staryellow.png';
 import starBlack from './assets/starwhite.png';
+import {addCardAC, changeStateAC, hideStarsAC, showAllAC, showStarsAC} from "./redux/cards-reducer";
 
 function App(props) {
     let newWord = React.createRef();
@@ -15,7 +16,7 @@ function App(props) {
         if (newWord.current.value === '' || newTranslate.current.value === '') {
             alert('Заполните форму')
         } else {
-            props.store.dispatch({type: 'ADD-CARD'});
+            props.store.dispatch(addCardAC());
             newWord.current.value = "";
             newTranslate.current.value = "";
         }
@@ -23,19 +24,19 @@ function App(props) {
 
     // Обновление state при каждом изменении input
     function updateInput(key, value) {
-        props.store.dispatch({type: 'CHANGE-STATE', key, value});
+        props.store.dispatch(changeStateAC(key, value));
     }
 
     function showStars() {
-        props.store.dispatch({type: 'SHOW-STARS'});
+        props.store.dispatch(showStarsAC());
     }
 
     function showAll() {
-        props.store.dispatch({type: 'SHOW-ALL'});
+        props.store.dispatch(showAllAC());
     }
 
     function hideStars() {
-        props.store.dispatch({type: 'HIDE-STARS'});
+        props.store.dispatch(hideStarsAC());
     }
 
     return (

@@ -32,7 +32,6 @@ let cardsReducer = (state = initialState, action) => {
                 }
             }
         case ADD_CARD:
-            debugger;
             const newCard = {
                 id: 1 + state.id,
                 value: {
@@ -134,5 +133,14 @@ let cardsReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const addCardAC = () => ({type: ADD_CARD})
+export const changeStateAC = (key, value) => ({type: CHANGE_STATE, key, value})
+export const showStarsAC = () => ({type: SHOW_STARS})
+export const showAllAC = () => ({type: SHOW_ALL})
+export const hideStarsAC = () => ({type: HIDE_STARS})
+export const flipCardAC = (id) => ({type: FLIP_CARD, numberCard: id})
+export const deleteCardAC = (id) => ({type: DELETE_CARD, numberCard: id})
+export const addStarAC = (id) => ({type: ADD_STAR, numberCard: id})
 
 export default cardsReducer;

@@ -3,23 +3,24 @@ import startYellow from "../assets/staryellow.png";
 import startWhite from "../assets/starwhite.png";
 import close from "../assets/remove.png";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {addStarAC, deleteCardAC, flipCardAC} from "../redux/cards-reducer";
 
 function CardsList(props) {
     // Переворачивание карточки
     function flipCard(id, e) {
         e.preventDefault();
-        props.store.dispatch({type: 'FLIP-CARD', numberCard: id})
+        props.store.dispatch(flipCardAC(id))
     }
 
     // Удаление карточки
     function deleteCard(id) {
-        props.store.dispatch({type: 'DELETE-CARD', numberCard: id});
+        props.store.dispatch(deleteCardAC(id));
     }
 
     //Добавление звездочки
     function addStar(id, e) {
         e.stopPropagation();
-        props.store.dispatch({type: 'ADD-STAR', numberCard: id});
+        props.store.dispatch(addStarAC(id));
     }
 
     return (
