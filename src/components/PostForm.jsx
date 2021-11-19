@@ -3,7 +3,7 @@ import MyInput from "./ui/input/MyInput";
 import MyButton from "./ui/button/MyButton";
 import {addCardAC, changeStateAC} from "../redux/cards-reducer";
 
-const PostForm = ({store}) => {
+const PostForm = ({store, setVisible}) => {
     let [card, setCard] = useState({word: '', translate: ''});
 
     // Добавление карточки в state
@@ -13,6 +13,7 @@ const PostForm = ({store}) => {
         } else {
             store.dispatch(addCardAC());
             setCard({word: '', translate: ''});
+            setVisible(false);
         }
     }
 
@@ -32,12 +33,14 @@ const PostForm = ({store}) => {
                 value={card.word}
                 label='Введите cлово'
                 onChange={(e) => updateInput('word', e.target.value)}
+                autoComplete="off"
             />
             <br/><br/>
             <MyInput
                 value={card.translate}
                 label='Введите перевод'
                 onChange={(e) => updateInput('translate', e.target.value)}
+                autoComplete="off"
             />
             <br/><br/>
             <MyButton onClick={addCard}>
